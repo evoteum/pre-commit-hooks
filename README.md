@@ -46,24 +46,30 @@ Reusable pre-commit hooks for managing code style and quality
 1. [Background](#background)
 1. [Install](#install)
 1. [Usage](#usage)
-1. [Any extra sections as required]
 1. [Documentation](#documentation)
 1. [Repository Configuration](#repository-configuration)
-1. [API](#api)
-1. [Maintainers](#maintainers)
-1. [Thanks](#thanks)
 1. [Contributing](#contributing)
 1. [License](#license)
 
-[//]: # (## Security)
+## Security
 [//]: # (OPTIONAL)
 [//]: # (May go here if it is important to highlight security concerns.)
 
+Hooks are intended to be run locally using the [pre-commit](https://pre-commit.com/) framework. Always audit scripts you add to your project.
 
 
-[//]: # (## Background)
+## Background
 [//]: # (OPTIONAL)
 [//]: # (Explain the motivation and abstract dependencies for this repo)
+
+Managing code style and quality across repositories can be repetitive. This repo provides reusable, centrally maintained hooks to reduce duplicated effort and ensure consistency.
+
+Examples include:
+
+- Sorting Terraform blocks with [`tfsort`](tfsort/)
+- Auto-formatting Python with `black` or `isort`
+- Removing trailing whitespace and fixing EOFs
+- Validating OpenTofu configuration
 
 ## Install
 
@@ -72,12 +78,38 @@ Reusable pre-commit hooks for managing code style and quality
 [//]: # (ELSE REQUIRED)
 
 
+Install the [pre-commit](https://pre-commit.com/#install) framework:
+
+```sh
+brew install pre-commit     # macOS
+pip install pre-commit      # cross-platform
+```
+
+Then in your project repo, configure hooks:
+
+```yaml
+# .pre-commit-config.yaml
+- repo: https://github.com/evoteum/pre-commit-hooks
+  rev: main
+  hooks:
+    - id: tfsort
+```
+
+Run:
+
+```sh
+pre-commit install
+pre-commit run --all-files
+```
 
 ## Usage
 [//]: # (REQUIRED)
 [//]: # (Explain what the thing does. Use screenshots and/or videos.)
 
 
+Each hook has its own README and test suite. See [`tfsort`](tfsort/) for a real example.
+
+Some hooks work best with default file patterns, requiring no `files:` entry. Others may need explicit regex patterns if filenames are nonstandard.
 
 [//]: # (Extra sections)
 [//]: # (OPTIONAL)
@@ -85,6 +117,10 @@ Reusable pre-commit hooks for managing code style and quality
 [//]: # (This is a space for ≥0 sections to be included,)
 [//]: # (each of which must have their own titles.)
 
+
+## Testing
+
+We practice test-driven development, so each hook has tests.
 
 
 ## Documentation
@@ -130,29 +166,3 @@ PRs are welcome.
 [//]: # (REQUIRED)
 
 All our code is licenced under the AGPL-3.0. See [LICENSE](LICENSE) for more information.
-
-<!-- BEGIN_TF_DOCS -->
-## Requirements
-
-No requirements.
-
-## Providers
-
-No providers.
-
-## Modules
-
-No modules.
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->
