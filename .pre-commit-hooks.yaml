@@ -1,0 +1,8 @@
+- id: yaml-sort
+  name: Sort and deduplicate top-level YAML lists
+  entry: yaml-sort/yaml-sort.sh
+  language: system
+  types: [yaml]
+  description: >
+    Sorts and deduplicates top-level YAML keys where the value is a list.
+  files: .*\.(yaml|yml)$
