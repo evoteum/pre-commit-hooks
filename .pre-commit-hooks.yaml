@@ -1,6 +1,6 @@
 - id: yaml-sort
   name: Sort and deduplicate top-level YAML lists
-  entry: yaml-sort/yaml-sort.sh
+  entry: hooks/yaml-sort/yaml-sort.sh
   language: system
   types: [yaml]
   description: >
